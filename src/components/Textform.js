@@ -20,10 +20,8 @@ export default function Textform(props) {
         props.showalert("Text cleared ", "success")
     }
     const handlecopyclick = () => {
-        var text = document.getElementById("myBox");
-        text.select();
-        text.setSelectionRange(0, 9999);
-        navigator.clipboard.writeText(text.value)
+    
+        navigator.clipboard.writeText(text)
         props.showalert("Copy to clipboard ", "success")
 
 
@@ -62,7 +60,7 @@ export default function Textform(props) {
             </div >
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }} >
                 <h2>Your text here</h2>
-                <p> {text.split(" ").filter((element)=>{return element.length!==0}).length} word {text.length} character</p>
+                <p> {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} word {text.length} character</p>
                 <p> {0.48 * text.split(" ").filter((element)=>{return element.length!==0}).length} Seconds to read an average person</p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ? text : "Enter something to previwe"}</p>
